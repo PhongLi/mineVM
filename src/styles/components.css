@@ -1,0 +1,131 @@
+@tailwind components;
+
+@layer components {
+  .content-wrapper {
+    @apply mx-auto max-w-[75rem] px-4;
+    @apply sm:px-12 md:px-10 lg:px-16 xl:px-6;
+  }
+
+  .content-wrapper-max {
+    @apply mx-auto max-w-[120rem];
+  }
+
+  .background-grid {
+    @apply relative z-0 bg-slate-100;
+    @apply dark:bg-[#0c1222];
+
+    &::before {
+      @apply bg-grid-slate-200/80 absolute inset-0 z-[-1] content-[''];
+      @apply dark:bg-grid-slate-50/[.025];
+
+      mask-image: linear-gradient(transparent, black, transparent);
+    }
+
+    &--fade-in {
+      @apply bg-transparent bg-gradient-to-t from-slate-100 via-slate-100;
+      @apply dark:bg-transparent dark:from-[#0c1222] dark:via-[#0c1222];
+
+      &::before {
+        @apply bg-left-bottom;
+
+        mask-image: linear-gradient(transparent, black, black);
+      }
+    }
+
+    &--fade-out {
+      @apply bg-transparent bg-gradient-to-b from-slate-100 via-slate-100;
+      @apply dark:bg-transparent dark:from-[#0c1222] dark:via-[#0c1222];
+
+      &::before {
+        mask-image: linear-gradient(black, black, transparent);
+      }
+    }
+  }
+
+  /* Frame Component - Reusable border frame */
+  .frame {
+    @apply border-[3px] border-primary-500 bg-primary-900/30;
+    @apply flex flex-col;
+    @apply items-center justify-center;
+    @apply backdrop-blur-sm;
+  }
+
+  /* Button Components based on design specs */
+  .button {
+    @apply inline-flex items-center justify-center border text-center font-medium transition-colors;
+    @apply h-8 whitespace-nowrap rounded-none px-6 text-sm;
+    @apply hover:opacity-90 active:opacity-100;
+
+    /* 1. Default Outline - Nút outline với nền transparent */
+    &--outline {
+      @apply border-primary-500 bg-transparent text-primary-500;
+      @apply hover:bg-primary-500/10;
+    }
+
+    /* 2. Light Pink - Nút với nền hồng nhạt và chữ đỏ */
+    &--light-pink {
+      @apply border-primary-500 bg-primary-100 text-primary-500;
+      @apply hover:bg-primary-200;
+    }
+
+    /* 3. Solid Red - Nút với nền đỏ đậm và chữ trắng */
+    &--solid-red {
+      @apply border-primary-500 bg-primary-500 text-white;
+      @apply hover:border-primary-700 hover:bg-primary-700;
+    }
+
+    /* 4. Light Pink Solid - Nút với nền hồng nhạt và chữ trắng */
+    &--light-pink-solid {
+      @apply border-primary-500 bg-primary-200 text-white;
+      @apply hover:border-primary-500 hover:bg-primary-300;
+    }
+
+    /* 5. Disabled - Nút bị vô hiệu hóa */
+    &--disabled {
+      @apply cursor-not-allowed border-primary-800 bg-primary-800 text-primary-600;
+    }
+
+    /* 6. Navigation - Giống nút 3 nhưng có outline trắng bên dưới khi active */
+    &--nav {
+      @apply relative border-primary-500 bg-primary-500 text-white;
+      @apply hover:border-primary-700 hover:bg-primary-700;
+
+      &.active {
+        @apply after:absolute after:bottom-[-3px] after:left-0 after:right-0 after:h-[3px] after:bg-white;
+      }
+    }
+
+    /* Button Sizes */
+    &--small {
+      @apply h-[20px] w-[88px] px-[6px] py-[2px] text-xs;
+    }
+
+    &--large {
+      @apply h-[32px] w-[149px] px-[26px] py-[4px] text-sm;
+    }
+
+    /* Disabled state */
+    &:disabled {
+      @apply cursor-not-allowed opacity-50;
+    }
+  }
+
+  .link {
+    @apply text-accent-600 relative inline-flex items-center gap-1;
+    @apply dark:text-accent-400;
+
+    svg {
+      @apply h-3.5 w-3.5;
+    }
+
+    &:hover {
+      &::after {
+        @apply scale-y-[1];
+      }
+    }
+
+    &::after {
+      @apply bg-accent-600/20 absolute bottom-1 left-0 right-0 z-[-1] h-2 origin-bottom scale-y-[.4] transition-transform content-[''];
+    }
+  }
+}

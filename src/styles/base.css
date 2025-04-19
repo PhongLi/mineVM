@@ -1,0 +1,44 @@
+@tailwind base;
+
+@layer base {
+  :root {
+    --font-pixelify: var(--font-sans);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    @apply scroll-smooth;
+  }
+
+  html,
+  body,
+  #__next,
+  #__root {
+    @apply h-full;
+  }
+
+  #__root {
+    @apply flex flex-col font-sans;
+  }
+
+  main {
+    @apply flex-1;
+  }
+
+  body {
+    @apply bg-background text-white;
+    background-image: url('/images/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
