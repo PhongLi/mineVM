@@ -25,7 +25,11 @@ export default function Navigation({ className = '' }) {
       </Link>
       <Link
         href="/room"
-        className={clsx('button button--nav', isActive('/room') && 'active')}
+        className={clsx(
+          'button button--nav',
+          isActive('/room') && 'active',
+          !isConnected && 'hidden'
+        )}
       >
         Room
       </Link>
